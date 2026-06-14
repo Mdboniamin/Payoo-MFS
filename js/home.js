@@ -1,16 +1,36 @@
+// function to get value
+function getValue(id){
+    return document.getElementById(id).value;
+}
+
+//function to get value and convert to int
+function getValueInt(id){
+    return parseInt(document.getElementById(id).value);
+}
+
+//function to get inner text
+function getInnerTextVal(id){
+    return parseInt(document.getElementById(id).innerText);
+}
+
+//function to set inner text
+function setInnerTextVal(val){
+    document.getElementById('available-balance').innerText = val;
+}
+
 // add-money-js
 document.getElementById('add-money-btn')
     .addEventListener('click', function (e) {
         e.preventDefault();
-        const bank = document.getElementById('bank').value;
-        const addAccountNumber = parseInt(document.getElementById('add-account-number').value);
-        const addAmount = parseInt(document.getElementById('add-amount').value);
-        const addPin = parseInt(document.getElementById('add-pin').value);
+        const bank = getValue('bank');
+        console.log(bank);
+        const addAccountNumber = getValueInt('add-account-number');
+        const addAmount = getValueInt('add-amount');
+        const addPin = getValueInt('add-pin');
 
         if (addAccountNumber === 12345678910 && addPin === 1234) {
-            const availableBalance = parseInt(document.getElementById('available-balance').innerText);
-
-            document.getElementById('available-balance').innerText = availableBalance + addAmount;
+            const availableBalance = getInnerTextVal('available-balance');
+            setInnerTextVal(availableBalance + addAmount);
         } else {
             alert('Please provide valid account number and pin');
         }
@@ -20,14 +40,12 @@ document.getElementById('add-money-btn')
 document.getElementById('cash-out-btn')
     .addEventListener('click', function (e) {
         e.preventDefault();
-        const cashoutAccountNumber = parseInt(document.getElementById('cashout-account-number').value);
-        const cashoutAmount = parseInt(document.getElementById('cashout-amount').value);
-        const cashoutPin = parseInt(document.getElementById('cashout-pin').value);
-
+        const cashoutAccountNumber = getValueInt('cashout-account-number');
+        const cashoutAmount = getValueInt('cashout-amount');
+        const cashoutPin = getValueInt('cashout-pin');
         if (cashoutAccountNumber === 12345678910 && cashoutPin === 1234) {
-            const availableBalance = parseInt(document.getElementById('available-balance').innerText);
-
-            document.getElementById('available-balance').innerText = availableBalance - cashoutAmount;
+            const availableBalance = getInnerTextVal('available-balance');
+            setInnerTextVal(availableBalance - cashoutAmount);
         } else {
             alert('Please provide valid account number and pin');
         }
