@@ -73,20 +73,18 @@ document.getElementById('send-now-btn')
             alert('Please provide valid account number and pin');
         }
     })
-// // withdraw money js
-// document.getElementById('cash-out-btn')
-//     .addEventListener('click', function (e) {
-//         e.preventDefault();
-//         const cashoutAccountNumber = getValueInt('cashout-account-number');
-//         const cashoutAmount = getValueInt('cashout-amount');
-//         const cashoutPin = getValueInt('cashout-pin');
-//         if (cashoutAccountNumber === 12345678910 && cashoutPin === 1234) {
-//             const availableBalance = getInnerTextVal('available-balance');
-//             setInnerTextVal(availableBalance - cashoutAmount);
-//         } else {
-//             alert('Please provide valid account number and pin');
-//         }
-//     })
+// get bonus js
+document.getElementById('get-bonus-btn')
+    .addEventListener('click', function (e) {
+        e.preventDefault();
+        const couponNumber = getValue('bonus-coupon');
+        if (couponNumber === 'newyear') {
+            const availableBalance = getInnerTextVal('available-balance');
+            setInnerTextVal(availableBalance + 5000);
+        } else {
+            alert('Please provide valid coupon');
+        }
+    })
 // // withdraw money js
 // document.getElementById('cash-out-btn')
 //     .addEventListener('click', function (e) {
@@ -115,10 +113,10 @@ document.getElementById('transfer-money-button')
     .addEventListener('click', function () {
         hideElementExcept('transfer-money-parent');
     })
-// document.getElementById('cash-out-button')
-//     .addEventListener('click', function () {
-//         hideElementExcept('cash-out-parent');
-//     })
+document.getElementById('get-bonus-button')
+    .addEventListener('click', function () {
+        hideElementExcept('get-bonus-parent');
+    })
 // document.getElementById('cash-out-button')
 //     .addEventListener('click', function () {
 //         hideElementExcept('cash-out-parent');
