@@ -1,30 +1,40 @@
 // function to get value
-function getValue(id){
+function getValue(id) {
     return document.getElementById(id).value;
 }
 
 //function to get value and convert to int
-function getValueInt(id){
+function getValueInt(id) {
     return parseInt(document.getElementById(id).value);
 }
 
 //function to get inner text
-function getInnerTextVal(id){
+function getInnerTextVal(id) {
     return parseInt(document.getElementById(id).innerText);
 }
 
 //function to set inner text
-function setInnerTextVal(val){
+function setInnerTextVal(val) {
     document.getElementById('available-balance').innerText = val;
 }
 
 //function to toggle
-function hideElementExcept(name){
+function hideElementExcept(name) {
     const forms = document.getElementsByClassName('form');
-        for(const form of forms){
-            form.style.display = 'none';
-        }
-        document.getElementById(name).style.display = 'block';
+    for (const form of forms) {
+        form.style.display = 'none';
+    }
+    document.getElementById(name).style.display = 'block';
+}
+//function to toggle style
+function toggleStyle(name) {
+    const formBtns = document.getElementsByClassName('form-btn');
+    for (const btn of formBtns) {
+        btn.classList.remove('border-[#0874f2]', 'bg-[#0874f20d]');
+        btn.classList.add('border-gray-300');
+    }
+    document.getElementById(name).classList.remove('border-gray-300');
+    document.getElementById(name).classList.add('border-[#0874f2]', 'bg-[#0874f20d]');
 }
 
 // add-money-js
@@ -105,22 +115,27 @@ document.getElementById('pay-now-btn')
 document.getElementById('add-money-button')
     .addEventListener('click', function () {
         hideElementExcept('add-money-parent');
+        toggleStyle('add-money-button');
     })
 document.getElementById('cash-out-button')
     .addEventListener('click', function () {
         hideElementExcept('cash-out-parent');
+        toggleStyle('cash-out-button');
     })
 document.getElementById('transfer-money-button')
     .addEventListener('click', function () {
         hideElementExcept('transfer-money-parent');
+        toggleStyle('transfer-money-button');
     })
 document.getElementById('get-bonus-button')
     .addEventListener('click', function () {
         hideElementExcept('get-bonus-parent');
+        toggleStyle('get-bonus-button');
     })
 document.getElementById('pay-bill-button')
     .addEventListener('click', function () {
         hideElementExcept('pay-bill-parent');
+        toggleStyle('pay-bill-button');
     })
 // document.getElementById('cash-out-button')
 //     .addEventListener('click', function () {
