@@ -85,20 +85,21 @@ document.getElementById('get-bonus-btn')
             alert('Please provide valid coupon');
         }
     })
-// // withdraw money js
-// document.getElementById('cash-out-btn')
-//     .addEventListener('click', function (e) {
-//         e.preventDefault();
-//         const cashoutAccountNumber = getValueInt('cashout-account-number');
-//         const cashoutAmount = getValueInt('cashout-amount');
-//         const cashoutPin = getValueInt('cashout-pin');
-//         if (cashoutAccountNumber === 12345678910 && cashoutPin === 1234) {
-//             const availableBalance = getInnerTextVal('available-balance');
-//             setInnerTextVal(availableBalance - cashoutAmount);
-//         } else {
-//             alert('Please provide valid account number and pin');
-//         }
-//     })
+// pay-bill-js
+document.getElementById('pay-now-btn')
+    .addEventListener('click', function (e) {
+        e.preventDefault();
+        const payBillbank = getValue('pay-bill-bank');
+        const payBillAccountNumber = getValueInt('pay-bill-account-number');
+        const payBillAmount = getValueInt('pay-bill-amount');
+        const payBillPin = getValueInt('pay-bill-pin');
+        if (payBillAccountNumber === 12345678910 && payBillPin === 1234) {
+            const availableBalance = getInnerTextVal('available-balance');
+            setInnerTextVal(availableBalance - payBillAmount);
+        } else {
+            alert('Please provide valid account number and pin');
+        }
+    })
 
 //toggling feature
 document.getElementById('add-money-button')
@@ -117,10 +118,10 @@ document.getElementById('get-bonus-button')
     .addEventListener('click', function () {
         hideElementExcept('get-bonus-parent');
     })
-// document.getElementById('cash-out-button')
-//     .addEventListener('click', function () {
-//         hideElementExcept('cash-out-parent');
-//     })
+document.getElementById('pay-bill-button')
+    .addEventListener('click', function () {
+        hideElementExcept('pay-bill-parent');
+    })
 // document.getElementById('cash-out-button')
 //     .addEventListener('click', function () {
 //         hideElementExcept('cash-out-parent');
