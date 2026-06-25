@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body class="bg-[#f4f5f7] min-h-screen">
@@ -40,7 +41,8 @@
 
         <!-- 6 section features -->
         <div class="grid grid-cols-3 gap-4 text-[#08080880] p-4">
-            <div class="form-btn border border-gray-300 text-center p-3 rounded-xl cursor-pointer" id="add-money-button">
+            <div class="form-btn border border-gray-300 text-center p-3 rounded-xl cursor-pointer"
+                id="add-money-button">
                 <img src="assets/wallet1.png" alt="" class="mx-auto mb-2">
                 <p>Add Money</p>
             </div>
@@ -48,11 +50,13 @@
                 <img src="assets/send1.png" alt="" class="mx-auto mb-2">
                 <p>Cashout</p>
             </div>
-            <div class="form-btn border border-gray-300 text-center p-3 rounded-xl cursor-pointer" id="transfer-money-button">
+            <div class="form-btn border border-gray-300 text-center p-3 rounded-xl cursor-pointer"
+                id="transfer-money-button">
                 <img src="assets/money1.png" alt="" class="mx-auto mb-2">
                 <p>Transfer Money</p>
             </div>
-            <div class="form-btn border border-gray-300 text-center p-3 rounded-xl cursor-pointer" id="get-bonus-button">
+            <div class="form-btn border border-gray-300 text-center p-3 rounded-xl cursor-pointer"
+                id="get-bonus-button">
                 <img src="assets/bonus1.png" alt="" class="mx-auto mb-2">
                 <p>Get Bonus</p>
             </div>
@@ -60,7 +64,8 @@
                 <img src="assets/purse1.png" alt="" class="mx-auto mb-2">
                 <p>Pay Bill</p>
             </div>
-            <div class="form-btn border border-gray-300 text-center p-3 rounded-xl cursor-pointer">
+            <div class="form-btn border border-gray-300 text-center p-3 rounded-xl cursor-pointer"
+                id="transaction-button">
                 <img src="assets/transaction1.png" alt="" class="mx-auto mb-2">
                 <p>Transaction</p>
             </div>
@@ -193,6 +198,16 @@
                 <button class="btn bg-[#0874f2] mt-5 w-full rounded-3xl text-white font-semibold" id="pay-now-btn">Pay
                     Now</button>
             </form>
+        </div>
+        <!-- transaction form -->
+        <div class="form" id="transaction-parent" style="display: none;">
+            <div class="flex justify-between items-center">
+                <h1 class="font-bold my-5">Transaction History</h1>
+                <p class="text-[#08080880]">View All</p>
+            </div>
+            <div id="transaction-container">
+
+            </div>
         </div>
     </div>
 

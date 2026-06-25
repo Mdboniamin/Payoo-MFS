@@ -1,3 +1,4 @@
+const transactionData = [];
 // function to get value
 function getValue(id) {
     return document.getElementById(id).value;
@@ -30,11 +31,11 @@ function hideElementExcept(name) {
 function toggleStyle(name) {
     const formBtns = document.getElementsByClassName('form-btn');
     for (const btn of formBtns) {
-        btn.classList.remove('border-[#0874f2]', 'bg-[#0874f20d]');
+        btn.classList.remove('active-btn');
         btn.classList.add('border-gray-300');
     }
     document.getElementById(name).classList.remove('border-gray-300');
-    document.getElementById(name).classList.add('border-[#0874f2]', 'bg-[#0874f20d]');
+    document.getElementById(name).classList.add('active-btn');
 }
 
 // add-money-js
@@ -45,6 +46,10 @@ document.getElementById('add-money-btn')
         console.log(bank);
         const addAccountNumber = getValueInt('add-account-number');
         const addAmount = getValueInt('add-amount');
+        if(addAmount <= 0){
+            alert('invalid amount')
+            return;
+        }
         const addPin = getValueInt('add-pin');
 
         if (addAccountNumber === 12345678910 && addPin === 1234) {
@@ -53,6 +58,11 @@ document.getElementById('add-money-btn')
         } else {
             alert('Please provide valid account number and pin');
         }
+        const data = {
+            name: "Add Money",
+            date: new Date().toLocaleTimeString()
+        }
+        transactionData.unshift(data);
     })
 
 // withdraw money js
@@ -61,13 +71,23 @@ document.getElementById('cash-out-btn')
         e.preventDefault();
         const cashoutAccountNumber = getValueInt('cashout-account-number');
         const cashoutAmount = getValueInt('cashout-amount');
+        const availableBalance = getInnerTextVal('available-balance');
+        if(cashoutAmount > availableBalance || cashoutAmount <= 0){
+            alert('sorry insufficient balance')
+            return;
+        }
         const cashoutPin = getValueInt('cashout-pin');
         if (cashoutAccountNumber === 12345678910 && cashoutPin === 1234) {
-            const availableBalance = getInnerTextVal('available-balance');
+            
             setInnerTextVal(availableBalance - cashoutAmount);
         } else {
             alert('Please provide valid account number and pin');
         }
+        const data = {
+            name: "Withdraw Money",
+            date: new Date().toLocaleTimeString()
+        }
+        transactionData.unshift(data);
     })
 // transfer money js
 document.getElementById('send-now-btn')
@@ -75,13 +95,24 @@ document.getElementById('send-now-btn')
         e.preventDefault();
         const transferMoneyAccountNumber = getValueInt('transfer-money-account-number');
         const transferMoneyAmount = getValueInt('transfer-money-amount');
+        const availableBalance = getInnerTextVal('available-balance');
+        
+        if(transferMoneyAmount > availableBalance || transferMoneyAmount){
+            alert('sorry insufficient balance')
+            return;
+        }
         const transferMoneyPin = getValueInt('transfer-money-pin');
         if (transferMoneyAccountNumber === 12345678910 && transferMoneyPin === 1234) {
-            const availableBalance = getInnerTextVal('available-balance');
+            
             setInnerTextVal(availableBalance - transferMoneyAmount);
         } else {
             alert('Please provide valid account number and pin');
         }
+        const data = {
+            name: "Transfer Money",
+            date: new Date().toLocaleTimeString()
+        }
+        transactionData.unshift(data);
     })
 // get bonus js
 document.getElementById('get-bonus-btn')
@@ -94,6 +125,11 @@ document.getElementById('get-bonus-btn')
         } else {
             alert('Please provide valid coupon');
         }
+        const data = {
+            name: "Get Bonus",
+            date: new Date().toLocaleTimeString()
+        }
+        transactionData.unshift(data);
     })
 // pay-bill-js
 document.getElementById('pay-now-btn')
@@ -103,11 +139,48 @@ document.getElementById('pay-now-btn')
         const payBillAccountNumber = getValueInt('pay-bill-account-number');
         const payBillAmount = getValueInt('pay-bill-amount');
         const payBillPin = getValueInt('pay-bill-pin');
+        const availableBalance = getInnerTextVal('available-balance');
+        if(payBillAmount > availableBalance || payBillAmount <= 0){
+            alert('sorry insufficient balance')
+            return;
+        }
         if (payBillAccountNumber === 12345678910 && payBillPin === 1234) {
-            const availableBalance = getInnerTextVal('available-balance');
+            
             setInnerTextVal(availableBalance - payBillAmount);
         } else {
             alert('Please provide valid account number and pin');
+        }
+        const data = {
+            name: "Pay Bill",
+            date: new Date().toLocaleTimeString()
+        }
+        transactionData.unshift(data);
+    })
+//transaction section
+document.getElementById('transaction-button')
+    .addEventListener('click', function (e) {
+        e.preventDefault();
+        const transactionContainer = document.getElementById('transaction-container')
+        
+        transactionContainer.innerText = '';
+
+        for (const data of transactionData) {
+            const div = document.createElement('div')
+            div.innerHTML = `
+            <div class="bg-white rounded-2xl p-3 text-[#080808] opacity-70 flex justify-between items-center mb-3">
+                <div class="flex items-center">
+                    <div class="rounded-full p-4 bg-[#f4f5f7] mr-2">
+                        <img src="assets/wallet1.png" alt="">
+                    </div>
+                    <div>
+                        <p class="font-bold">${data.name}</p>
+                        <p class="text-[12px]">${data.date}</p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-ellipsis rotate-90"></i>
+            </div>
+            `
+            transactionContainer.appendChild(div)
         }
     })
 
@@ -137,7 +210,8 @@ document.getElementById('pay-bill-button')
         hideElementExcept('pay-bill-parent');
         toggleStyle('pay-bill-button');
     })
-// document.getElementById('cash-out-button')
-//     .addEventListener('click', function () {
-//         hideElementExcept('cash-out-parent');
-//     })
+document.getElementById('transaction-button')
+    .addEventListener('click', function () {
+        hideElementExcept('transaction-parent');
+        toggleStyle('transaction-button');
+    })

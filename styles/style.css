@@ -1,1 +1,5 @@
 @import "tailwindcss";
+.active-btn {
+    border-color: #0874f2;
+    background-color: #0874f20d;
+}
