@@ -1,6 +1,6 @@
 # Payoo MFS 💳
 
-A modern **Mobile Financial Service (MFS)** web application built with HTML, CSS, and JavaScript. Payoo lets users manage their digital wallet — add money, cash out, transfer funds, pay bills, and track transactions — all from a clean, mobile-first interface.
+A **Mobile Financial Service (MFS)** demo web app built with HTML, Tailwind CSS, DaisyUI, and vanilla JavaScript. Payoo simulates a digital wallet — add money, cash out, transfer funds, redeem bonus coupons, pay bills, and view transaction history — all in a clean, mobile-first interface.
 
 🔗 **Live Demo:** [https://mdboniamin.github.io/Payoo-MFS/](https://mdboniamin.github.io/Payoo-MFS/)
 📁 **Repository:** [https://github.com/Mdboniamin/Payoo-MFS](https://github.com/Mdboniamin/Payoo-MFS)
@@ -21,15 +21,16 @@ A modern **Mobile Financial Service (MFS)** web application built with HTML, CSS
 
 ## ✨ Features
 
-- 🔐 **Login** — Secure authentication via mobile number and 4-digit PIN
-- 💰 **Add Money** — Deposit funds by selecting a bank, entering account number, amount, and PIN
-- 💸 **Cash Out** — Withdraw money through an agent using agent number, amount, and PIN
-- 📤 **Transfer Money** — Send money to any user by account number, amount, and PIN
-- 🎁 **Get Bonus** — Redeem bonus coupons to add balance
-- 🧾 **Pay Bill** — Pay utility and service bills (electricity, gas, mobile recharge, etc.)
-- 📋 **Transaction History** — View latest payments with details (Electricity Bill, Bank Deposit, Mobile Recharge, Gas Bill, and more)
-- 👁️ **View All** — Expandable transaction list for full payment history
-- 🚪 **Log Out** — Secure session logout
+- 🔐 **Login** — Mock authentication using a hardcoded mobile number and 4-digit PIN (for demo purposes only — no real backend or session handling)
+- 💰 **Add Money** — Deposit funds by selecting a bank and entering account number, amount, and PIN
+- 💸 **Cash Out** — Withdraw money via agent number, amount, and PIN, with an insufficient-balance check
+- 📤 **Transfer Money** — Send money to another account number, amount, and PIN
+- 🎁 **Get Bonus** — Redeem a bonus coupon code (`newyear`) to add a fixed bonus to your balance
+- 🧾 **Pay Bill** — Pay a bill by selecting a billing bank/biller, account number, amount, and PIN
+- 📋 **Transaction History** — Logs each action (Add Money, Withdraw Money, Transfer Money, Pay Bill, Get Bonus) with a timestamp, shown most-recent-first
+- 🚪 **Log Out** — Log out button is present in the UI (not yet wired to functionality)
+
+> All balances and transactions live only in memory for the current browser session — refreshing or closing the tab resets everything, since there's no backend or persistent storage.
 
 ---
 
@@ -65,6 +66,15 @@ open index.html
 # or just double-click index.html in your file explorer
 ```
 
+### Demo Credentials
+
+To log in or authorize any transaction, use:
+
+- **Mobile Number:** `12345678910`
+- **PIN:** `1234`
+
+To redeem a bonus, use coupon code: `newyear`
+
 ---
 
 ## 📂 Project Structure
@@ -72,9 +82,9 @@ open index.html
 ```
 Payoo-MFS/
 ├── index.html              # Login page
-├── home.html               # Main dashboard & feature screens
-├── payoo.png               # App logo
-├── assets/                 # Icons and images
+├── home.html                # Main dashboard & feature screens
+├── payoo.png                 # App logo
+├── assets/                  # Icons and images
 │   ├── bg.png
 │   ├── bonus1.png
 │   ├── Group.png
@@ -84,10 +94,10 @@ Payoo-MFS/
 │   ├── transaction1.png
 │   └── wallet1.png
 ├── js/
-│   ├── home.js             # Dashboard logic
-│   └── script.js           # Shared / login logic
+│   ├── home.js              # Dashboard logic (add money, cash out, transfer, bonus, pay bill, transaction history)
+│   └── script.js            # Login logic
 └── styles/
-    └── style.css           # Custom styles (alongside Tailwind & DaisyUI)
+    └── style.css            # Custom styles (alongside Tailwind & DaisyUI)
 ```
 
 ---
@@ -105,7 +115,7 @@ Login (Mobile + PIN)
   └────────────────────────────────────────┘
         │
         ▼
-  Latest Payments (Transaction History)
+  Transaction History (session-only)
 ```
 
 ---
@@ -114,8 +124,10 @@ Login (Mobile + PIN)
 
 - [ ] Real backend / API integration
 - [ ] User registration flow
+- [ ] Persistent transaction storage (currently resets on page reload)
+- [ ] Working "Log Out" and "View All" actions
+- [ ] Input validation for non-numeric / empty fields
 - [ ] Transaction receipts & PDF export
-- [ ] Push notifications
 - [ ] Dark mode
 - [ ] Multi-language support
 
@@ -146,4 +158,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-> ⚠️ **Disclaimer:** Payoo MFS is a demo/educational project. It does not process real financial transactions.
+> ⚠️ **Disclaimer:** Payoo MFS is a demo/educational project built for practicing frontend fundamentals. It does not process real financial transactions, has no backend, and stores no data persistently.

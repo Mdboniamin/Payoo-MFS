@@ -97,7 +97,7 @@ document.getElementById('send-now-btn')
         const transferMoneyAmount = getValueInt('transfer-money-amount');
         const availableBalance = getInnerTextVal('available-balance');
         
-        if(transferMoneyAmount > availableBalance || transferMoneyAmount){
+        if(transferMoneyAmount > availableBalance || transferMoneyAmount <= 0){
             alert('sorry insufficient balance')
             return;
         }
